@@ -1,0 +1,33 @@
+.mat {
+  background-color: #185392;
+  padding: 15px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  position: fixed;
+
+
+  /* margin-left: 20px; */
+
+}
+
+.tbns{
+    margin-left: 10px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+  /* margin-left: 20px; */
+}
+
+.title{
+  color: aliceblue;
+  font-size: 36px;
+}
+
+
+
+
+/* .spacer {
+  flex: 1 1 auto;
+} */
+

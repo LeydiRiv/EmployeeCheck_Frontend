@@ -1,0 +1,39 @@
+<!-- <p>employee-list works!</p> -->
+
+<h1 class="text-h1"> EMPLOYEE LIST</h1>
+
+<table class="employee-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Department</th>
+      <th>Email</th>
+      <!-- <th>Status</th>
+      <th>Check-In</th>
+      <th>Check-Out</th> -->
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>{{ employee.id }}</td>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.position }}</td>
+      <td>{{ employee.department }}</td>
+      <td>{{ employee.email }}</td>
+      <!-- loadCheckIns -->
+      <!-- <td>{{ getEmployeeCheckInStatus(employee) }}</td> 
+      <td>{{ getEmployeeCheckIn(employee) }}</td> 
+      <td>{{ getEmployeeCheckOut(employee) }}</td>  -->
+       <!-- <td>{{   }}</td> -->
+       <td>
+        <button (click)="openEditDialog(employee)" class="btn btn-primary">Edit</button>
+        
+        <button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

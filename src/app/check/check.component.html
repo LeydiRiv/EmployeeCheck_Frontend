@@ -1,0 +1,100 @@
+<!-- <p>check works!</p> -->
+
+
+<!-- <div mat-dialog-title>
+    <h1>Check Form</h1>
+</div>
+<div mat-dialog-content class="content">
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+        <mat-label>Check Id</mat-label>
+        <input matInput type="text" placeholder="Ex. 1">
+      </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1">Check-In</mat-radio-button>
+        <mat-radio-button value="2">Check-Out</mat-radio-button>
+      </mat-radio-group>      
+  </div>
+  
+</div> -->
+
+<!-- CREAR AHORA EL BOTRON DE CHECKIN PORQUE EL INDIO VA CREAR LO DEL RADION BUTTON -->
+
+<!-- <div mat-dialog-actions>
+    <button mat-raised-button>Cancel</button>
+    <button mat-raised-button color="primary">Save</button>
+</div> -->
+
+
+<!-- <form (ngSubmit)="onCheckInOutSubmit()">
+  <div class="form-group">
+    <label for="employeeId">Employee ID:</label>
+    <input [(ngModel)]="checkInOut.employeeId" name="employeeId" class="form-control" placeholder="Employee ID"
+      required>
+  </div>
+
+
+
+  <div class="radio-buttons-container">
+    <div class="radio-button">
+      <input name="radio-group" id="radio1" class="radio-button__input" type="radio" [(ngModel)]="checkInOut.action"
+        [value]="'checkin'" required>
+      <label for="radio1" class="radio-button__label">
+        <span class="radio-button__custom"></span>
+        Check-In
+      </label>
+    </div>
+    <div class="radio-button">
+      <input name="radio-group" id="radio3" class="radio-button__input" type="radio" [(ngModel)]="checkInOut.action"
+        [value]="'checkout'" required>
+      <label for="radio3" class="radio-button__label">
+        <span class="radio-button__custom"></span>
+        Check-Out
+      </label>
+    </div>
+  </div>
+
+
+
+  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+</form> -->
+
+
+<form (ngSubmit)="onCheckInOutSubmit()">
+  <div mat-dialog-title>
+    <h1 class="text-h1">Check Form</h1>
+  </div>
+
+  <div mat-dialog-content class="content">
+
+    <!-- Campo para Employee ID -->
+    <div class="row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Employee ID</mat-label>
+        <input matInput [(ngModel)]="checkInOut.employeeId" name="employeeId" placeholder="Employee ID" required>
+      </mat-form-field>
+    </div>
+
+    <!-- Radio buttons para Check-In y Check-Out -->
+    <div class="row">
+      <mat-radio-group [(ngModel)]="checkInOut.action" name="action" required>
+        <mat-radio-button value="checkin">Check-In</mat-radio-button>
+        <mat-radio-button value="checkout">Check-Out</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+  </div>
+
+  <div mat-dialog-actions>
+    <!-- Botón Cancel -->
+    <!-- <button mat-raised-button type="button" (click)="closeDialog()">Cancel</button> -->
+    <!-- Botón Submit -->
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <button mat-raised-button type="button" (click)="closeDialog()">Cancel</button>
+
+  </div>
+</form>

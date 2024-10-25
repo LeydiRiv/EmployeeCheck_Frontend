@@ -1,0 +1,49 @@
+<!-- <p>employee works!</p> -->
+
+
+<div mat-dialog-title>
+    <h1 class="text-h1">Employee Form</h1>
+</div>
+
+<form (ngSubmit)="onSubmit()">
+    <div mat-dialog-content class="content">
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Employee Name</mat-label>
+                <input matInput [(ngModel)]="employee.name" name="name" type="text" placeholder="Employee name"
+                    required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Position</mat-label>
+                <input matInput [(ngModel)]="employee.position" name="position" type="text"
+                    placeholder="Employee position" required>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="employee.email" name="email" type="email" placeholder="Employee email"
+                    required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Department</mat-label>
+                <input matInput [(ngModel)]="employee.department" name="department" type="text"
+                    placeholder="Employee department" required>
+            </mat-form-field>
+        </div>
+    
+    </div>
+
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button color="primary" type="submit" class="btn btn-primary mt-3">Save</button>
+        <button mat-raised-button color="primary" type="button" (click)="closeDialog()">Cancel</button>
+    </div>
+
+
+
+</form>
+

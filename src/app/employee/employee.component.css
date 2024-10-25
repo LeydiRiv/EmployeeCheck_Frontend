@@ -1,0 +1,31 @@
+.content{
+padding-top: 10px;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+.action {
+    padding: 0px 25px 20px;
+    button {
+        flex: 1; 
+    /* el espacio centrado entre los botones del formulario */
+    }
+}
+
+
+/* H1 */
+.text-h1 {
+  
+    font-size: 40px;
+    /* margin: 20px 0; */
+    text-align: center;
+  
+  }
