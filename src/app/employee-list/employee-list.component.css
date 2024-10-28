@@ -1,0 +1,32 @@
+.employee-table  {
+  background: white;
+  width: 50%;
+  /* hace que se mueva al centro */
+  margin: 0 auto; 
+  margin-top: 2%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.employee-table th {
+  background-color: #185392;
+  height: 35px;
+  border-bottom: 1px solid rgb(210, 220, 250);
+  color: rgb(255, 255, 255);
+}
+
+.employee-table td {
+  height: 30px;
+  border: 0.5px solid rgba(240, 240, 240, 10);
+}
+
+
+
+/* H1 */
+.text-h1 {
+  
+  font-size: 40px;
+  margin: 20px 0;
+  text-align: center;
+
+}
