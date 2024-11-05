@@ -1,0 +1,26 @@
+<!-- <p>position-list works!</p> -->
+
+<h1 class="text-h1">POSITION LIST</h1>
+
+<table class="check-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Position</th>
+      <th>Department</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let position of positions">
+      <td>{{ position.id }}</td>
+      <td>{{ position.name }}</td>
+      <td>{{ position.departmentName }}</td> <!-- Department name -->
+      <td>
+        <!-- <button class="btn btn-primary">Edit</button> -->
+        <button (click)="editPosition(position)" class="btn btn-primary">Edit</button>
+        <button (click)="deletePosition(position.id)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

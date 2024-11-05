@@ -11,25 +11,22 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 export class CheckComponent implements OnInit {
 
 
-
+// Array to store employee data, check-in and checkout data
   employees: any[] = [];
   checkIns: any[] = [];
-  //Ingresar datos a employee
+
+  //Employee for form input with default values
   employee = { id: null, name: '', position: '', department: '', email: '' };
   checkInOut = { employeeId: null, action: 'checkin' }; //Verificar
 
 
-   //Importante para inicializar
+   //Load check-ins when component initializes
    ngOnInit(): void {
     this.loadCheckIns();
   }
 
 
-
-
-  //Aqui guardaremos la información en la bd
-
-    // //Mi constructor para hacer las llamadas al service || el segundo parametro es para cerrar los formularios y funcion del boton cancel
+  //  Constructor to inject service and dialog reference 
     constructor(private EmployeeService: EmployeeService, private dialogRef: MatDialogRef<CheckComponent>) { }
 
 
@@ -43,13 +40,14 @@ export class CheckComponent implements OnInit {
   // Method to get the checkIn from employee
   getEmployeeCheckIn(employee: any): string {
     const checkIn = employee.checkIns.find((ci: any) => ci.checkInTime);
-    return checkIn ? checkIn.checkInTime : 'N/A';
+    return checkIn ? checkIn.checkInTime : 'N/A'; // Return check-in time if available, otherwise N/A
   }
 
   // Method to get checkOut from employee
   getEmployeeCheckOut(employee: any): string {
     const checkOut = employee.checkIns.find((ci: any) => ci.checkOutTime);
-    return checkOut ? checkOut.checkOutTime : 'N/A';
+    return checkOut ? checkOut.checkOutTime : 'N/A';   // Return check-in time if available, otherwise N/A
+
   }
 
 
@@ -59,13 +57,16 @@ export class CheckComponent implements OnInit {
     
   // Method to register checkIn-checkOut
   onCheckInOutSubmit() {
-    const { employeeId, action } = this.checkInOut;
+    // Get values of employeeId an Action
+    const { employeeId, action } = this.checkInOut; //Create a employee, EMPLOYEE
 
+    // Validate the employeeId
     if (employeeId === null || employeeId === undefined) {
       console.log('Employee ID is required for this action.');
       return;
     }
 
+    // Perform check-in action
     if (action === 'checkin') {
       this.EmployeeService.createCheckIn(employeeId).subscribe(() => {
         this.loadCheckIns();
@@ -73,6 +74,8 @@ export class CheckComponent implements OnInit {
       }, error => {
         console.error('Error during check-in:', error);
       });
+    
+// Perform check-out action
     } else if (action === 'checkout') {
       this.EmployeeService.checkoutFromCheckInSystem(employeeId).subscribe(() => {
         this.loadCheckIns();
@@ -86,13 +89,9 @@ export class CheckComponent implements OnInit {
 
 
 
-//Para el boton de Cancel
+// Method to close the dialog
   closeDialog() {
-    this.dialogRef.close(); // Cierra el diálogo
+    this.dialogRef.close(); // Closes the dialog
   }
-
-
-
-
 
 }

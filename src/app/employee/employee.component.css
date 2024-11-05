@@ -16,7 +16,8 @@ padding-top: 10px;
     padding: 0px 25px 20px;
     button {
         flex: 1; 
-    /* el espacio centrado entre los botones del formulario */
+    /* Centered spacing between form buttons */
+
     }
 }
 

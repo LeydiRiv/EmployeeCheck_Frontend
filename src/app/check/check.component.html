@@ -1,34 +1,46 @@
-<form (ngSubmit)="onCheckInOutSubmit()">
+<div class="dialog-container">
+
+
   <div mat-dialog-title>
     <h1 class="text-h1">Check Form</h1>
   </div>
 
-  <div mat-dialog-content class="content">
+  <form (ngSubmit)="onCheckInOutSubmit()">
+    <div mat-dialog-content class="content">
 
-    <!-- Campo para Employee ID -->
-    <div class="row">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Employee ID</mat-label>
-        <input matInput [(ngModel)]="checkInOut.employeeId" name="employeeId" placeholder="Employee ID" required>
-      </mat-form-field>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Employee ID</mat-label>
+          <input matInput [(ngModel)]="checkInOut.employeeId" name="employeeId" placeholder="Employee ID" required>
+        </mat-form-field>
+      </div>
+
+
+      <div class="row">
+        <mat-radio-group [(ngModel)]="checkInOut.action" name="action" required>
+          <div class="button">
+<!-- Buttons for Check-ins & Check-outs -->
+            <mat-radio-button value="checkin">Check-In</mat-radio-button>
+            <mat-radio-button value="checkout">Check-Out</mat-radio-button>
+
+          </div>
+
+        </mat-radio-group>
+      </div>
+
     </div>
 
-    <!-- Radio buttons para Check-In y Check-Out -->
-    <div class="row">
-      <mat-radio-group [(ngModel)]="checkInOut.action" name="action" required>
-        <mat-radio-button value="checkin">Check-In</mat-radio-button>
-        <mat-radio-button value="checkout">Check-Out</mat-radio-button>
-      </mat-radio-group>
+
+    <div mat-dialog-actions class="action">
+
+      <button mat-raised-button color="primary" type="submit" class="btn btn-primary mt-3">Save</button>
+      <button mat-raised-button color="primary" type="button" (click)="closeDialog()">Cancel</button>
+
+
+
     </div>
 
-  </div>
+  </form>
 
-  <div mat-dialog-actions>
-    <!-- Botón Cancel -->
-    <!-- <button mat-raised-button type="button" (click)="closeDialog()">Cancel</button> -->
-    <!-- Botón Submit -->
-    <button mat-raised-button color="primary" type="submit">Submit</button>
-    <button mat-raised-button type="button" (click)="closeDialog()">Cancel</button>
-
-  </div>
-</form>
+</div>

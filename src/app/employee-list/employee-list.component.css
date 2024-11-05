@@ -1,7 +1,7 @@
 .employee-table  {
   background: white;
   width: 50%;
-  /* hace que se mueva al centro */
+  /* moves to the center */
   margin: 0 auto; 
   margin-top: 2%;
   border-collapse: collapse;

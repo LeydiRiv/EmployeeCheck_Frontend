@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeListComponent } from './employee-list/employee-list.component'; //Siempre es importante verificar si existen los modulos o importaciones
-import { CheckListComponent } from './check-list/check-list.component'; //importamos componente checkin
+import { EmployeeListComponent } from './employee-list/employee-list.component'; 
+import { CheckListComponent } from './check-list/check-list.component'; 
+import { DepartmentListComponent } from './department-list/department-list.component'; 
+import { PositionListComponent } from './position-list/position-list.component'; 
 
 
-//Modificxamos esto para especificar la ruta principal de abajo
+
+//Routes
 const routes: Routes = [
   { path: 'employee-list', component: EmployeeListComponent },
   { path: 'check-list', component: CheckListComponent },
+  { path: 'department-list', component: DepartmentListComponent },
+  { path: 'position-list', component: PositionListComponent },
+
   { path: '', redirectTo: '/employee-list', pathMatch: 'full' }
   // { path: '', redirectTo: '/check-list', pathMatch: 'full' },
 

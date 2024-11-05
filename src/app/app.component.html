@@ -13,6 +13,11 @@
     ADD CHECKIN  
   </button>
 
+  <span class="tbns"></span>
+
+  <button mat-raised-button (click)="openDepartmentPosition()">
+    ADD DETAILS
+  </button>
   <!-- <button mat-raised-button (click)="openAddEmployeeList()">
     EMPLOYEE LIST  
   </button> -->
@@ -30,16 +35,36 @@
 
 <!-- <router-outlet></router-outlet> -->
 
+<div class="content">
+  <div class="links-cuadro">
+    <a routerLink="/employee-list">Employee List</a>
+    <!-- <br> -->
+    <a routerLink="/check-list">Check List</a> 
+    <!-- <br> -->
+    <a routerLink="/department-list">Department List</a> 
+    
+    <a routerLink="/position-list">Position List</a>
+  </div>
+  
+  <router-outlet></router-outlet>
+</div>
 
 
 
+
+
+<!-- 
 <br>
 <br>
 <br>
 <a routerLink="/employee-list">Employee List</a>
 <br>
-<a routerLink="/check-list">Check List</a>
+<a routerLink="/check-list">Check List</a> <br>
+<a routerLink="/department-list">Department List</a> <br>
+<a routerLink="/position-list">Position List</a>
+
+
 
 <router-outlet></router-outlet>
 
-<!-- <span class="space"></span> -->
+<span class="space"></span> -->

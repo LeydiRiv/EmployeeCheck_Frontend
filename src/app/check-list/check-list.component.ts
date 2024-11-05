@@ -9,14 +9,16 @@ import { EmployeeService } from '../services/api.service';
 })
 export class CheckListComponent implements OnInit {
 
+  // Array to store employee data
   employees: any[] = [];
+  // Array to store Check data
   checkIns: any[] = [];
-  // Aqui implementaremos la logica para mostrar los datos de check
 
+// Variable to store the name of the last accessed employee
   empleadoAnterior: string = 'Unknown Employee';
 
 
-  //Este es el servidor en donde traemos los datos de backend
+  // Constructor to inject service for backend data access
   constructor(private EmployeeService: EmployeeService) { }
 
   ngOnInit() {
@@ -24,26 +26,25 @@ export class CheckListComponent implements OnInit {
   }
 
   //Load the data for employees and check-Ins - Aqui basicamente traemos la informacon
-  
   loadChecks() {
     // This call the service to get employees from backend
     this.EmployeeService.getEmployees().subscribe((data: any[]) => {
       this.employees = data; // Save data
-      console.log('Empleados cargados:', this.employees); //verificar que si este funcionando los datos
+      console.log('Loading employees', this.employees); //Verify data loading
       this.loadCheckIns(); //
     });
   }
 
-  
-getEmployeeName(checkId: number): string {
-  // Busca el empleado que tiene el check-in actual en su lista de checkIns
+  // Get the name of the employee who performed a specific check-in
+getEmployeeName(checkId: number): string { 
+  // Search for the employee who has the current check-in in their check-in list
   const employee = this.employees.find(emp => emp.checkIns.some((ci: { id: number; }) => ci.id === checkId));
   
   if (employee) {
-    this.empleadoAnterior = employee.name; // Actualizamos el ultimo name
+    this.empleadoAnterior = employee.name; // Update last accessed name
     return employee.name;
   } else {
-    return this.empleadoAnterior; // Devolvemos el ultimo name
+    return this.empleadoAnterior; // Return last accessed name if not found
   }
 }
 
@@ -52,18 +53,18 @@ getEmployeeName(checkId: number): string {
   // Get the checkIns list
   loadCheckIns() {
     this.EmployeeService.getCheckIns().subscribe((data: any[]) => {
-      console.log('Check-ins:', data);  // Verificar los datos de checkIN
+      console.log('Check-ins:', data);  // Log check-in data to verify
       this.checkIns = data; // Assign the data received from the backend to checkIns
     });
   }
 
 
-
+// Method to delete a check-in entry
   deleteCheckIn(id: number) {
     this.EmployeeService.deleteCheckIn(id).subscribe(() => {
       this.loadCheckIns(); //refresh list
     }, error => {
-      console.error('No se logro elimninar registro ', error);
+      console.error('Failed to delete check-in entry ', error);
     });
   }
 

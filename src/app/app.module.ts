@@ -12,11 +12,19 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import {MatToolbarModule} from '@angular/material/toolbar'; //Module
 import {MatIconModule} from '@angular/material/icon'; //Icon
 import {MatButtonModule} from '@angular/material/button'; //Boton
-// import {MatDialogModule} from '@angular/material/dialog'; //Dialog
 import {MatDialogModule} from '@angular/material/dialog';
-import {MatFormFieldModule} from '@angular/material/form-field'; //es el form field para el formulario
-import {MatInputModule} from '@angular/material/input'; //para solucionar el error de entrada
-import {MatRadioModule} from '@angular/material/radio'; //Importamos el button radio de material
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatInputModule} from '@angular/material/input'; //Input
+import {MatRadioModule} from '@angular/material/radio'; //Radio
+import {MatSelectModule} from '@angular/material/select';
+// import {MatSelectModule} from '@angular/material/select';
+import {ReactiveFormsModule} from '@angular/forms';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+// import { MatToolbarModule } from '@angular/material/toolbar';
+// import { MatButtonModule } from '@angular/material/button';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -26,30 +34,46 @@ import { EmployeeComponent } from './employee/employee.component';
 import { CheckComponent } from './check/check.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { CheckListComponent } from './check-list/check-list.component';
-import { EmployeeEditComponent } from './employee-edit/employee-edit.component'; //importamos componente checkin
+import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
+import { DepartmentPositionComponent } from './department-position/department-position.component';
+import { DepartmentListComponent } from './department-list/department-list.component';
+import { DepartmentEditComponent } from './department-edit/department-edit.component';
+import { PositionEditComponent } from './position-edit/position-edit.component';
+import { PositionListComponent } from './position-list/position-list.component';
 
 
 
 @NgModule({
-  declarations: [  //Importante, importar los componentes tanto arriba como especificarlos aqui
+  declarations: [  
     AppComponent,
     EmployeeComponent,
     CheckComponent,
     EmployeeListComponent,
     CheckListComponent,
-    EmployeeEditComponent
+    EmployeeEditComponent,
+    DepartmentPositionComponent,
+    DepartmentListComponent,
+    DepartmentEditComponent,
+    PositionEditComponent,
+    PositionListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatToolbarModule, //Agregamos esto
+    MatToolbarModule, 
     MatIconModule, //icon
     MatButtonModule, //Boton
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule, //select
+    ReactiveFormsModule, //Reactive Form
+    MatCardModule,
+    MatListModule,
+    MatPaginatorModule
+  
   ],
   providers: [
     provideClientHydration(),

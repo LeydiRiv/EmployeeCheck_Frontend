@@ -1,15 +1,16 @@
 
-<h1 class=" text-h1">FORMULARIO DE CHECK-IN-OUT</h1>
+<h1 class=" text-h1">CHECK LIST</h1>
 
 <table class="check-table">
+
   <thead>
     <tr>
       <th>ID</th>
-      <th>Employee ID</th>
+      <th>Employee</th>
       <th>Check-In Time</th>
       <th>Check-Out Time</th>
       <th>Status</th>
-      <th>Options</th>
+      <th>Actions</th>
     </tr>
   </thead>
 
@@ -21,10 +22,11 @@
       <td>{{ getEmployeeName(check.id) }}</td>
       <td>{{ check.checkInTime || 'N/A' }}</td>
       <td>{{ check.checkOutTime || 'N/A' }}</td>
-      <td>{{ check.status ? 'True' : 'False' }}</td>
+      <td>{{ check.status ? 'Active' : 'Inactive' }}</td>
       <td>
         <button (click)="deleteCheckIn(check.id)" class="btn btn-danger">Delete</button>
       </td>
     </tr>
   </tbody>
 </table>
+

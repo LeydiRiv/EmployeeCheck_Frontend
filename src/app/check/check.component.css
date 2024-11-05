@@ -1,21 +1,47 @@
 
-.full-width {
- width: 100%;
-}
-  
-.row {
-  margin-bottom: 16px; 
-}
-  
 
-  /* H1 */
+ .dialog-container {
+  width: 400px; /* Width of the form */       
+  height: 330px; /* Height of the form */      
+
+  padding-top: 0px;
+  overflow: hidden;   /* Hide scroll bar on form */
+}
+
+.content {
+  padding-top: 10px;
+  overflow: hidden; /* Hide scroll bar on form */
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+
+
+  mat-form-field {
+    width: 100%;
+    /* gap: 20px; */
+  }
+
+ 
+
+}
+
+.action {
+  padding: 0px 25px 20px;
+
+  button {
+    flex: 1;
+    /* Spacing between forms buttons */
+  }
+}
+
+
+/* H1 */
 .text-h1 {
-  
+
   font-size: 40px;
   /* margin: 20px 0; */
   text-align: center;
 
 }
-
-
-

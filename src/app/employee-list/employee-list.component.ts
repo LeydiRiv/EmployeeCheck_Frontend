@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-// import { EmployeeListComponent } from './employee-list/employee-list.component'; //importamos componente checkin
+import { Component, OnInit, ViewChild} from '@angular/core';
+// import { EmployeeListComponent } from './employee-list/employee-list.component'; 
 // import { EmployeeService } from '../services/employee.service';
 import { EmployeeEditComponent } from '../employee-edit/employee-edit.component'; 
 import { MatDialog } from '@angular/material/dialog';
+// import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 import { EmployeeService } from '../services/api.service';
-import { response } from 'express';
 
 
 @Component({
@@ -14,37 +14,43 @@ import { response } from 'express';
   styleUrl: './employee-list.component.css'
 })
 export class EmployeeListComponent implements OnInit {
-[x: string]: any;
 
+
+// Array to store employee data
   employees: any[] = [];
 
+ //  Constructor to inject service and dialog reference 
   constructor(private EmployeeService: EmployeeService, private dialog: MatDialog) { }
 
+
+  // Method that runs when the component loads
+  ngOnInit(): void {
+    this.getAllEmployee(); // Call method to load employees when component initializes
+  }
+
+
+
+// Method to open the edit dialog for a selected emoloyee
   openEditDialog(employee: any): void {
-    console.log('Empleado seleccionado:', employee);  // Verificar si el objeto es null o tiene datos correctos
+    console.log('Selected employee');  
     if (employee) {
       this.dialog.open(EmployeeEditComponent, {
-        width: '400px',  // Ajusta el tamaño del diálogo si es necesario
-        data: { employee }  // Pasa los datos del empleado al diálogo
+        width: '400px',  
+        data: { employee }  // Pass employee data to the dialog
       });
     } else {
-      console.error('Empleado es null o indefinido');
+      console.error('Error! Employee is null');
     }
   }
   
 
-  // metod que se ejecuta al cargar el componente
-  ngOnInit(): void {
-    this.getAllEmployee(); // Llamamos al method al inicializar el componente
-  }
 
-
-  //Creo que response es data
+  // Method to retrieve all employees from the backend
   getAllEmployee(): void{
     this.EmployeeService.getEmployees().subscribe(
       response=>{
-        this.employees = response; //almaceno los datos del backend en employee para imprimir employee
-         console.log("Lista de todos los empleados",response)
+        this.employees = response; // Store backend data in employees array
+         console.log("List of all empployees: ",response)
       }
     );
   }
@@ -54,7 +60,7 @@ export class EmployeeListComponent implements OnInit {
   // Delete employee
   deleteEmployee(id: number) {
     this.EmployeeService.deleteEmployee(id).subscribe(() => {
-      this.getAllEmployee(); 
+      this.getAllEmployee(); // Refresh
     });
   }
 

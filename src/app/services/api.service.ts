@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -7,79 +7,130 @@ import { Observable } from 'rxjs';
 })
 export class EmployeeService {
 
-  //Endpoints
+  // Endpoints for API access
   private employeeApiUrl = 'http://localhost:8762/employeesystem/api/v1/people';
   private checkApiUrl = 'http://localhost:8762/checkinsystem/api/v1/checkins';
+  private departmentUrl = 'http://localhost:8762/departmentrolesystem/api/v1/departments';
+  private positionUrl = 'http://localhost:8762/departmentrolesystem/api/v1/positions';
 
 
-  //para las peticiones http
+  // Constructor to inject HttpClient for Http requests
   constructor(private http: HttpClient) { }
 
 
-  //cosas de Employee:
+  //Employee
 
-  // Registrar empleado
+  // Register a new employee
   createEmployee(employee: any): Observable<any> {
     return this.http.post<any>(`${this.employeeApiUrl}/register`, employee);
   }
 
-  // Obtener empleados
+  // Get all employees
   getEmployees(): Observable<any[]> {
     return this.http.get<any[]>(this.employeeApiUrl);
   }
 
-  // // Actualizar empleado
-  // updateEmployee(employee: any): Observable<any> {
-  //   return this.http.patch(`${this.employeeApiUrl}/employees/${employee.id}`, employee);
-  // }
 
-//VERIFICAR
-  updateEmployee(employee: any): Observable<any> {
-    return this.http.patch(`${this.employeeApiUrl}/employees/${employee.id}`, employee, {
-      headers: { 'Content-Type': 'application/json' }
-    });
-  }
+    // Update an employee
+    updateEmployee(employeeId: string, employee: any): Observable<any> {
+      return this.http.put<any>(`${this.employeeApiUrl}/employees/${employeeId}`, employee);
+    }
   
 
 
-
-  // Eliminar empleado
+  // Delete an employee
   deleteEmployee(id: number): Observable<any> {
     return this.http.delete(`${this.employeeApiUrl}/${id}`);
   }
 
 
+  // Check
 
-
-
-
-
-  //Cosas de Check
-
-   //Get checkInSystem - Get all the checkIns
+  // Get all the checkIns
   getCheckIns(): Observable<any[]> {
-    return this.http.get<any[]>(this.checkApiUrl); //Hace referencia al check-In
+    return this.http.get<any[]>(this.checkApiUrl); 
   }
 
 
-    // Create Check-In in CheckInSystem
+  // Create Check-In in CheckInSystem
   createCheckIn(employeeId: number): Observable<any> {
     return this.http.post<any>(`${this.checkApiUrl}/${employeeId}`, null);
   }
 
-//Put Check-Out in CheckInSystem
+  //Put Check-Out in CheckInSystem
   checkoutFromCheckInSystem(checkInId: number): Observable<any> {
     return this.http.put<any>(`${this.checkApiUrl}/checkout/${checkInId}`, null);
   }
-
-
-// 
-
 
 
   // Delete a check-in in CheckInSystem
   deleteCheckIn(checkInId: number): Observable<any> {
     return this.http.delete(`${this.checkApiUrl}/${checkInId}`);
   }
+
+// Departments
+
+  //Get departments
+  getDepartments(): Observable<any[]> {
+    return this.http.get<any[]>(this.departmentUrl);
+  }
+
+// Create a new department
+  createDepartment(department: any): Observable<any> {
+    return this.http.post<any>(`${this.departmentUrl}/register`, department);
+  }
+
+  // Update a department
+  updateDepartment(departmentId: string, department: any): Observable<any> {
+    return this.http.put<any>(`${this.departmentUrl}/register/${departmentId}`, department);
+  }
+
+  // Delete a department
+  deleteDepartment(departmentId: string): Observable<any> {
+    return this.http.delete<any>(`${this.departmentUrl}/${departmentId}`);
+  }
+
+// Positio
+
+  // Create a new position
+  createPosition(position: any): Observable<any> {
+    return this.http.post(`${this.positionUrl}/register`, position); 
+  }
+
+  // Get all the positions
+  getPositions(): Observable<any[]> {
+    return this.http.get<any[]>(this.positionUrl);
+  }
+
+  // Delete a position
+  deletePosition(positionId: string): Observable<any> {
+    return this.http.delete<any>(`${this.positionUrl}/${positionId}`);
+  }
+
+
+  // Update a position
+  updatePosition(positionId: string, position: any): Observable<any> {
+    return this.http.put<any>(`${this.positionUrl}/register/${positionId}`, position);
+  }
+
+
+
+// Method to get position by department
+getPositionsByDepartment(departmentId: number): Observable<any[]> {
+  return this.http.get<any[]>(`${this.positionUrl}/department/${departmentId}`);
+}
+
+
+
+// Pagination attempt
+// getPaginEmployees(page: number, size: number): Observable<any> {
+//   const params = new HttpParams()
+//     .set('page', page.toString())
+//     .set('size', size.toString());
+
+//   return this.http.get<any>(this.employeeApiUrl, { params });
+// }
+
+
 
 }
