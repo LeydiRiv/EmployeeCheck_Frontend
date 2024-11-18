@@ -1,13 +1,14 @@
+.dialog-container {
+    width: 400px; 
+    height: auto; 
+    padding-top: 0px;
+    overflow: hidden;
+    border-radius: 15px; 
+}
 
 .content {
     padding-top: 10px;
 }
-
-.dialog-container{
-    width: 400px;
-
-}
-
 
 .row {
     display: flex;
@@ -27,10 +28,11 @@ mat-form-field {
 
 .action button {
     flex: 1; 
+    /* max-width: 120px; */
 }
 
 .text-h1 {
     font-size: 40px; 
-    text-align: center; 
+    text-align: center;
     margin: 10px 0;
 }

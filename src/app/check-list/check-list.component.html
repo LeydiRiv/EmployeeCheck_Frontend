@@ -1,32 +1,62 @@
-
 <h1 class=" text-h1">CHECK LIST</h1>
 
-<table class="check-table">
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Name" #input>
+</mat-form-field>
 
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Employee</th>
-      <th>Check-In Time</th>
-      <th>Check-Out Time</th>
-      <th>Status</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="id" class="mat-column-id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let check"> {{check.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="employee" class="mat-column-employee">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee </th>
+      <td mat-cell *matCellDef="let check"> {{getEmployeeName(check.id)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="checkInTime" class="mat-column-checkInTime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Check-In Time </th>
+      <td mat-cell *matCellDef="let check"> {{check.checkInTime || 'N/A'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="checkOutTime" class="mat-column-checkOutTime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Check-Out Time </th>
+      <td mat-cell *matCellDef="let check"> {{check.checkOutTime || 'N/A'}} </td>
+    </ng-container>
 
 
-
-  <tbody>
-    <tr *ngFor="let check of checkIns">
-      <td>{{ check.id }}</td>
-      <td>{{ getEmployeeName(check.id) }}</td>
-      <td>{{ check.checkInTime || 'N/A' }}</td>
-      <td>{{ check.checkOutTime || 'N/A' }}</td>
-      <td>{{ check.status ? 'Active' : 'Inactive' }}</td>
-      <td>
-        <button (click)="deleteCheckIn(check.id)" class="btn btn-danger">Delete</button>
+    <ng-container matColumnDef="status" class="mat-column-status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+      <td mat-cell *matCellDef="let check">
+        <span [ngClass]="check.status ? 'status-icon-active' : 'status-icon-inactive'"></span>
+        {{check.status ? 'Active' : 'Inactive'}}
       </td>
-    </tr>
-  </tbody>
-</table>
+    </ng-container>
 
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let check">
+        <button (click)="deleteCheckIn(check.id)" class="btn btn-danger">Delete</button>
+
+        <button *ngIf="check.status" (click)="methodCheckOut(check.id)" class="btn btn-warning">CheckOut</button>
+        <!-- <button *ngIf="!check.status" (click)="methodCheckIn(check.id)" class="btn btn-primary">CheckIn</button> -->
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="6">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" aria-label="Select page of check-ins"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

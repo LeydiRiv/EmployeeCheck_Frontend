@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../services/api.service';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { FormControl } from '@angular/forms';
-
-import { switchMap, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-
-
-
 
 @Component({
   selector: 'app-employee',
@@ -17,13 +10,10 @@ import { Observable, of } from 'rxjs';
 export class EmployeeComponent implements OnInit {
 
 
-
 // Arrays to store departments, positions, and filtered positions
   departments: any[] = [];
   positions: any[] = [];
   filteredPositions: any[] = [];
-
-  // employee = { id: null, name: '', position: null, department: { id: null }, email: '' };
 
   employee = { 
     id: null, 
@@ -61,7 +51,9 @@ export class EmployeeComponent implements OnInit {
     if (departmentId) {
       this.employeeService.getPositionsByDepartment(departmentId).subscribe((positions) => {
         this.filteredPositions = positions; // Assign filtered positions 
+
         console.log('Filtered Positions:', this.filteredPositions);
+      
       });
     }
   }

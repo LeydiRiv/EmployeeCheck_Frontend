@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient, withFetch } from '@angular/common/http';  // Add withFetch for allow fetch APIs
+import { provideHttpClient, withFetch, HttpClientModule } from '@angular/common/http';  // Add withFetch for allow fetch APIs
 
 
 import { FormsModule } from '@angular/forms';  // Import FormsModule for the Forms
@@ -25,6 +25,9 @@ import { MatListModule } from '@angular/material/list';
 // import { MatToolbarModule } from '@angular/material/toolbar';
 // import { MatButtonModule } from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {MatTableModule} from '@angular/material/table'; //Para las tablas y la paginación
 
 
 
@@ -40,6 +43,11 @@ import { DepartmentListComponent } from './department-list/department-list.compo
 import { DepartmentEditComponent } from './department-edit/department-edit.component';
 import { PositionEditComponent } from './position-edit/position-edit.component';
 import { PositionListComponent } from './position-list/position-list.component';
+import { DepartmentComponent } from './department/department.component';
+import { PositionComponent } from './position/position.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { CheckDepartmentListComponent } from './check-department-list/check-department-list.component';
+// import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -55,7 +63,10 @@ import { PositionListComponent } from './position-list/position-list.component';
     DepartmentListComponent,
     DepartmentEditComponent,
     PositionEditComponent,
-    PositionListComponent
+    PositionListComponent,
+    DepartmentComponent,
+    PositionComponent,
+    CheckDepartmentListComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +83,11 @@ import { PositionListComponent } from './position-list/position-list.component';
     ReactiveFormsModule, //Reactive Form
     MatCardModule,
     MatListModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatMenuModule,
+    NgxPaginationModule,
+    HttpClientModule,
+    MatTableModule,
   
   ],
   providers: [
@@ -80,6 +95,7 @@ import { PositionListComponent } from './position-list/position-list.component';
     provideAnimationsAsync(),
     provideHttpClient(withFetch())
   ],
+  schemas: [NO_ERRORS_SCHEMA],  // Agrega esto aquí
   bootstrap: [AppComponent]
 })
 export class AppModule { }

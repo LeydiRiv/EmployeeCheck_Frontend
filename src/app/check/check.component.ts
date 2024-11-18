@@ -25,10 +25,8 @@ export class CheckComponent implements OnInit {
     this.loadCheckIns();
   }
 
-
   //  Constructor to inject service and dialog reference 
     constructor(private EmployeeService: EmployeeService, private dialogRef: MatDialogRef<CheckComponent>) { }
-
 
     // Get the checkIns list
     loadCheckIns() {
@@ -49,10 +47,6 @@ export class CheckComponent implements OnInit {
     return checkOut ? checkOut.checkOutTime : 'N/A';   // Return check-in time if available, otherwise N/A
 
   }
-
-
-
-
 
     
   // Method to register checkIn-checkOut

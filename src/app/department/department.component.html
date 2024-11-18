@@ -1,0 +1,21 @@
+<!-- <p>department works!</p> -->
+
+ <div class="dialog-container">
+
+    <div mat-dialog-content class="content">
+        <div>
+            <h1 class="text-h1">Department</h1>
+            <mat-form-field appearance="outline">
+                <mat-label>Department Name</mat-label>
+                <input matInput [(ngModel)]="departmentName" placeholder="Department Name" required>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button color="primary" (click)="save()">Save</button>
+        <button mat-raised-button (click)="closeDialog()">Cancel</button>
+    </div>
+
+</div>
+

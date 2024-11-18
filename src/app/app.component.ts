@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
 
 //Components
 import { EmployeeComponent } from './employee/employee.component';
@@ -13,6 +14,9 @@ import { DepartmentListComponent } from './department-list/department-list.compo
 import { DepartmentEditComponent } from './department-edit/department-edit.component'; 
 import { PositionListComponent } from './position-list/position-list.component'; 
 import { PositionEditComponent } from './position-edit/position-edit.component';
+import { PositionComponent } from './position/position.component';
+import { DepartmentComponent } from './department/department.component';
+import { CheckDepartmentListComponent } from './check-department-list/check-department-list.component';
 
 
 
@@ -31,6 +35,14 @@ export class AppComponent {
 
   openAddEditEmployee() {
     this._dialog.open(EmployeeComponent);
+  }
+
+  openAddDepartment() {
+    this._dialog.open(DepartmentComponent);
+  }
+
+  openAddPosition() {
+    this._dialog.open(PositionComponent);
   }
 
 
@@ -78,6 +90,8 @@ export class AppComponent {
     this._dialog.open(PositionListComponent);
   }
 
-
+  openCheckDepartmentList() {
+    this._dialog.open(CheckDepartmentListComponent);
+  }
 
 }

@@ -122,14 +122,26 @@ getPositionsByDepartment(departmentId: number): Observable<any[]> {
 
 
 
-// Pagination attempt
-// getPaginEmployees(page: number, size: number): Observable<any> {
-//   const params = new HttpParams()
-//     .set('page', page.toString())
-//     .set('size', size.toString());
 
+// Obtenemos la paginación - verficiar. Al parecer el backend esta bien
+getPaginatedEmployees(page: number, size: number): Observable<any> {
+  let params = new HttpParams()
+    .set('page', page.toString())
+    .set('size', size.toString());
+
+  return this.http.get<any>(`${this.employeeApiUrl}/pagination`, { params });
+}
+
+
+// getPaginatedEmployees(params: any): Observable<any> {
 //   return this.http.get<any>(this.employeeApiUrl, { params });
 // }
+
+// getPaginatedEmployees(params: any): Observable<any> {
+//   return this.http.get<any>(`${this.employeeApiUrl}/employees`, { params });
+// }
+
+
 
 
 

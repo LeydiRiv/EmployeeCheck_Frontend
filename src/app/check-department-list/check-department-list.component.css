@@ -1,47 +1,29 @@
 .mat-elevation-z8 {
   margin: auto;
   width: 90%;
-}
+ }
 
 .mat-column-id {
-  width: 12%;
-  /* Space */
+  width: 29%;
+  /*Space*/
 }
 
-.mat-column-employee {
-  width: 18%;
-  /* Space */
+.mat-column-name {
+  width: 40%;
+ /*Space*/
 }
-
-
-
-.mat-column-checkInTime {
-  width: 20%;
-  /* Space */
-}
-.mat-column-checkOutTime {
-  width: 20%;
-  /* Space */
-}
-.mat-column-status {
-  width: 15%;
-  /* Space */
-}
-
 
 .mat-column-actions {
-  width: 40%;
- /* Space */
+  width: 40%; /*Space*/
 }
 
+/* Center the text*/
 .mat-cell,
 .mat-header-cell {
   text-align: center;
 }
 
-
 /* H1 */
-
 .text-h1 {
 
   font-size: 40px;

@@ -14,6 +14,7 @@ export class DepartmentEditComponent implements OnInit {
 
   departmentForm: FormGroup; // Define the department form
 
+ 
   constructor(private EmployeeService: EmployeeService,  // Service
     private dialogRef: MatDialogRef<DepartmentEditComponent>, // Reference to close the dialog
     private fb: FormBuilder, // Create reactive form
@@ -27,6 +28,7 @@ export class DepartmentEditComponent implements OnInit {
   }
 
   ngOnInit(): void { }
+
 
   // Method to save changes
   save(): void {

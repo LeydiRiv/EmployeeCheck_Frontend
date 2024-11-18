@@ -4,6 +4,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { CheckListComponent } from './check-list/check-list.component'; 
 import { DepartmentListComponent } from './department-list/department-list.component'; 
 import { PositionListComponent } from './position-list/position-list.component'; 
+import { CheckDepartmentListComponent } from './check-department-list/check-department-list.component';
 
 
 
@@ -13,6 +14,8 @@ const routes: Routes = [
   { path: 'check-list', component: CheckListComponent },
   { path: 'department-list', component: DepartmentListComponent },
   { path: 'position-list', component: PositionListComponent },
+  { path: 'check-department-list', component: CheckDepartmentListComponent },
+
 
   { path: '', redirectTo: '/employee-list', pathMatch: 'full' }
   // { path: '', redirectTo: '/check-list', pathMatch: 'full' },

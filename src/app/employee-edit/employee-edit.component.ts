@@ -1,7 +1,3 @@
-// import { Component, Inject } from '@angular/core';
-// import { MatDialogRef } from '@angular/material/dialog';
-// import { EmployeeService } from '../services/api.service';
-// import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { EmployeeService } from '../services/api.service';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -19,15 +15,10 @@ export class EmployeeEditComponent {
   // Define the employee form
   EmployeeForm: FormGroup;
 
-
-
-
-  // // Arrays to store departments, positions, and filtered positions
-  // departments: any[] = [];
-  // positions: any[] = [];
-  // filteredPositions: any[] = [];
-
-
+  // Arrays to store departments, positions, and filtered positions
+  departments: any[] = [];
+  positions: any[] = [];
+  filteredPositions: any[] = [];
 
 
   constructor(private EmployeeService: EmployeeService, // Service
@@ -37,9 +28,9 @@ export class EmployeeEditComponent {
   ) {
     this.EmployeeForm = this.fb.group({ // Initialize the form with the employee 
       name: [data?.employee?.name || ''],
-      position: [data?.employee?.position || ''],
+      department: [data?.employee?.department || null],
       email: [data?.employee?.email || ''],
-      department: [data?.employee?.department || '']
+      position: [data?.employee?.position || null]
 
     });
 
@@ -48,53 +39,62 @@ export class EmployeeEditComponent {
   }
 
   ngOnInit(): void {
-    // this.loadDepartments(); // Load departments
-    // this.loadPositions(); // Load departments
+    this.loadDepartments();
+    this.loadPositions();
+
+    // If the employee already has a department, filter positions by that department
+    if (this.data.employee?.department) {
+      this.filterPositionsByDepartment();
+    }
+
   }
 
-  // employee = { 
-  //   position: { id: null, name: '' }, 
-  //   department: { id: null, name: '' }, 
-  // };
-
-
-
-  // // Method to load departments from the backend
-  // loadDepartments() {
-  //   this.EmployeeService.getDepartments().subscribe((data: any[]) => {
-  //     this.departments = data;
-  //   });
-  // }
-
-  // // Method to load positions from the backend 
-  // loadPositions() {
-  //   this.EmployeeService.getPositions().subscribe((data: any[]) => {
-  //     this.positions = data;
-  //     console.log('Loading positions:', this.positions);
-  //   });
-  // }
-
-  // // Method to filter positions based on selected department
-  // filterPositionsByDepartment() {
-  //   const departmentId = this.employee.department?.id;
-  //   if (departmentId) {
-  //     this.EmployeeService.getPositionsByDepartment(departmentId).subscribe((positions) => {
-  //       this.filteredPositions = positions; // Assign filtered positions 
-  //       console.log('Filtered Positions:', this.filteredPositions);
-  //     });
-  //   }
-  // }
-
-
-  // Method to save changes
-  save(): void {
-    console.log("Save button clicked");
-    const updatedEmployee = { ...this.data.employee, ...this.EmployeeForm.value }; // Combine current data with form data
-    this.EmployeeService.updateEmployee(updatedEmployee.id, updatedEmployee).subscribe(() => {
-      this.dialogRef.close(updatedEmployee); // save
+  // Method to load departments from the backend 
+  loadDepartments() {
+    this.EmployeeService.getDepartments().subscribe((data: any[]) => {
+      this.departments = data;
     });
-    console.log("Data saved successfully!");
   }
+
+  // Method to load positions from the backend 
+  loadPositions() {
+    this.EmployeeService.getPositions().subscribe((data: any[]) => {
+      this.positions = data;
+    });
+  }
+
+  // Method to filter positions based on the selected deparment 
+  filterPositionsByDepartment() {
+    const departmentId = this.EmployeeForm.get('department')?.value?.id; // Get the department Id from the form
+    if (departmentId) {
+      this.EmployeeService.getPositionsByDepartment(departmentId).subscribe((positions) => {
+        this.filteredPositions = positions;
+      });
+    } else {
+      this.filteredPositions = this.positions;
+    }
+  }
+
+
+  // Method to save changes to the employee
+  save(): void {
+    if (this.EmployeeForm.valid) {
+      // Merge the existing employee data with updated form values
+      const updatedEmployee = {
+        ...this.data.employee,
+        ...this.EmployeeForm.value,
+        department: this.EmployeeForm.value.department?.name,
+        position: this.EmployeeForm.value.position?.name
+      };
+
+      this.EmployeeService.updateEmployee(updatedEmployee.id, updatedEmployee).subscribe(() => {
+        this.dialogRef.close(updatedEmployee);
+
+      });
+    }
+
+  }
+
 
 
   cancel(): void {

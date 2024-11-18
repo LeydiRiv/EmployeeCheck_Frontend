@@ -2,65 +2,51 @@
 
 
 
-<div mat-dialog-title>Employee Edit</div>
-<div mat-dialog-content>
-    <form [formGroup]="EmployeeForm"> 
-        <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
-            <input matInput formControlName="name" placeholder="Employee Name">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Position</mat-label>
-            <input matInput formControlName="position" placeholder="Position">
-        </mat-form-field>
-
-        <!-- <mat-form-field appearance="outline">
-            <mat-label>Department</mat-label>
-            <mat-select [(ngModel)]="employee.department" name="department" (selectionChange)="filterPositionsByDepartment()" required>
-                <mat-option *ngFor="let department of departments" [value]="department">
-                    {{ department.name }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field> -->
-
-
-
-
-        <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" placeholder="Email">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Department</mat-label>
-            <input matInput formControlName="department" placeholder="Department">
-        </mat-form-field>
-
-<!-- 
-        <mat-form-field appearance="outline">
-            <mat-label>Position</mat-label>
-            <mat-select [(ngModel)]="employee.position" name="position" required>
-              <mat-option *ngFor="let position of filteredPositions" [value]="position">
-                {{ position.name }}
-              </mat-option>
-            </mat-select>
-        </mat-form-field> -->
-
-
-
-
-    </form>
-</div>
-<div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="save()">Save</button>
-    <button mat-raised-button (click)="cancel()">Cancel</button>
+<div mat-dialog-title>
+  <h1 class="text-h1">Employee Edit</h1>
 </div>
 
+<form [formGroup]="EmployeeForm">
+
+  <div mat-dialog-content class="content">
+    <!-- <form [formGroup]="EmployeeForm"> -->
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Employee Name">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Department</mat-label>
+        <mat-select formControlName="department" (selectionChange)="filterPositionsByDepartment()">
+          <mat-option *ngFor="let department of departments" [value]="department">
+            {{ department.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Email">
+      </mat-form-field>
 
 
+      <mat-form-field appearance="outline">
+        <mat-label>Position</mat-label>
+        <mat-select formControlName="position">
+          <mat-option *ngFor="let position of filteredPositions" [value]="position">
+            {{ position.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
+    </div>
+    <!-- </form> -->
+  </div>
+</form>
 
-
-
-
+<div mat-dialog-actions class="action">
+  <button mat-raised-button color="primary" (click)="save()">Save</button>
+  <button mat-raised-button (click)="cancel()">Cancel</button>
+</div>

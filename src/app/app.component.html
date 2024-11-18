@@ -14,18 +14,25 @@
   </button>
 
   <span class="tbns"></span>
-
+<!-- 
   <button mat-raised-button (click)="openDepartmentPosition()">
     ADD DETAILS
-  </button>
+  </button> -->
   <!-- <button mat-raised-button (click)="openAddEmployeeList()">
     EMPLOYEE LIST  
   </button> -->
+  
+  <button mat-raised-button [matMenuTriggerFor]="detailsMenu">ADD DETAILS</button>
+
+  <mat-menu #detailsMenu="matMenu">
+    <button mat-menu-item (click)="openAddDepartment()">Departments</button>
+    <button mat-menu-item (click)="openAddPosition()">Positions</button>
+  </mat-menu>
+  
 
 
 </mat-toolbar>
 
-<!-- import {MatPaginatorModule} from '@angular/material/paginator'; -->
 
 
 <!-- <nav>
@@ -44,6 +51,8 @@
     <a routerLink="/department-list">Department List</a> 
     
     <a routerLink="/position-list">Position List</a>
+    <a routerLink="/check-department-list">Check Department List</a>
+
   </div>
   
   <router-outlet></router-outlet>
@@ -51,20 +60,4 @@
 
 
 
-
-
-<!-- 
-<br>
-<br>
-<br>
-<a routerLink="/employee-list">Employee List</a>
-<br>
-<a routerLink="/check-list">Check List</a> <br>
-<a routerLink="/department-list">Department List</a> <br>
-<a routerLink="/position-list">Position List</a>
-
-
-
-<router-outlet></router-outlet>
-
-<span class="space"></span> -->
+<!-- <span class="space"></span> s -->

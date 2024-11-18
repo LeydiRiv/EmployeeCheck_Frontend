@@ -1,0 +1,55 @@
+<!-- <p>check-department-list works!</p> -->
+
+
+  <h1 class="text-h1">CHECK DEPARTMENT LIST</h1>
+
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Department" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="department" class="mat-column-department">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
+      <td mat-cell *matCellDef="let item"> {{ item.department }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="role" class="mat-column-role">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Position </th>
+      <td mat-cell *matCellDef="let item"> {{ item.role }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="person" class="mat-column-person">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee </th>
+      <td mat-cell *matCellDef="let item"> {{ item.person }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status" class="mat-column-status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+      <td mat-cell *matCellDef="let item">
+        <span [ngClass]="item.status ? 'status-icon-active' : 'status-icon-inactive'"></span>
+        {{ item.status ? 'Active' : 'Inactive' }}
+      </td>
+    </ng-container>
+    
+    
+
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" 
+                 [pageSize]="5" 
+                 aria-label="Select page of departments" 
+                 (page)="onPageChange($event)">
+  </mat-paginator>
+</div>
